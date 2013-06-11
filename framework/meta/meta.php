@@ -68,19 +68,27 @@ class Meta extends Base {
     public function save_meta_boxes($post_id) {
 
 
-        if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
-            return;
-        }
-         $post_content = array();
-        foreach ($_POST as $key => $value) {
-        if (strstr($key, $this->fName)) {
-            $post_content[$key] = $value;
-            }
-        }
         
-        $value = json_encode($post_content);
+         $post_options = array();
         
-        update_post_meta($post_id, "bootypost_content", $value);
+
+        
+         $items = $_POST["booty_item-name"];
+         $items_size = $_POST["booty_item-width"];
+
+
+
+        $i=0;
+        foreach ($items as $item) {
+            
+            $post_options[] = array(
+                    "item" => $item,
+                    "size" => $items_size[$i],
+                );
+            $i++;
+        }
+        $value = json_encode($post_options);
+        update_post_meta($post_id, "booty_post_options", $value);
 
     }
 

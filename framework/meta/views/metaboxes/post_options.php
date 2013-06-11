@@ -48,6 +48,25 @@ $this->text("test_multi[]","test_multi");
 
     <div id="grid">
 
+
+
+
+
     </div>
-    <ul id="sortable2" class="connectedSortable"> </ul>
+    <ul id="sortable2" class="connectedSortable"> 
+ <?php 
+$post_id = $_GET["post"];
+
+ $items = get_post_meta(2, "booty_post_options",true);
+ 
+ $items = json_decode($items);
+ 
+print_r($items);
+foreach ($items as $item) : ?> 
+
+
+<li class="booty-item ui-state-default grey-gre ui-resizable"><?php echo $item->item; ?></li>
+    <?php endforeach; ?> 
+
+    </ul>
 </div>

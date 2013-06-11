@@ -21,6 +21,7 @@ jQuery(document).ready(function ($){
                 spans.each(function(i){
                     grid_width += $(this).outerWidth(true);
                     console.log($(this).outerWidth(true));
+
                 });    
                 return grid_width
             },
@@ -62,6 +63,13 @@ jQuery(document).ready(function ($){
                        
                         
             },
+            getItemWith=function(item){
+               var itemWidth = (item.width() - Grid.spanWidth()) / Grid.spanFullWidth();
+               itemWidth++;
+                return itemWidth;
+               
+
+            },
                     
                     
                     
@@ -78,6 +86,7 @@ jQuery(document).ready(function ($){
                 spanWidth : spanWidth,
                 gutterWidth : gutterWidth,
                 spanFullWidth : spanFullWidth,
+                getItemWith:getItemWith,
                 init : init
             }
         }();
@@ -110,7 +119,17 @@ jQuery(document).ready(function ($){
                 maxHeight:40,
                 maxWidth: $("#grid").width(),
                 minHeight: 40,
-                minWidth: Grid.spanWidth()
+                minWidth: Grid.spanWidth(),
+                stop:function(){
+
+                    $(".booty-item").each(function(){
+
+
+var item_width = Grid.getItemWith($(this));
+                        $(this).find(".item-wdith").eq(0).val(item_width);
+                         console.log($(this).find(".item-wdith").eq(0).val())
+                    });
+                }
             });
             $( "#draggable" ).draggable({
                 connectToSortable: "#sortable",
@@ -126,12 +145,12 @@ jQuery(document).ready(function ($){
           
         $("#page-add-item-button").click(function(){
             var item_name = $("#page-select-element-list").val();
-            var content_item = $("<li></li>").addClass("ui-state-default grey-gre ui-resizable");
+            var content_item = $("<li></li>").addClass("booty-item ui-state-default grey-gre ui-resizable");
             content_item.append('<div class="content">'+item_name+'</div>');
             content_item.append('<div class="delete item-action"></div>')
             content_item.append('<div class="edit item-action"></div>')
-            content_item.append('<input type="hidden" name="booty_iteam-name[]" value="'+item_name+'"></div>')
-            content_item.append('<input type="hidden" name="booty_iteam-postion[]" value=""></div>')
+            content_item.append('<input type="hidden" name="booty_item-name[]" value="'+item_name+'"></div>')
+            content_item.append('<input type="hidden" class="item-wdith" name="booty_item-width[]" value="3"></div>')
             $("#sortable2").append(content_item);
         
             content_item.width(Grid.spanWidth() + Grid.spanFullWidth()*2)
