@@ -1,0 +1,127 @@
+/* 
+    Document   : style
+    Created on : 07/06/2013, 06:15:44 ص
+    Author     : reda
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+
+
+.ui-state-default{
+    border: 0;padding: 0;
+    max-height: 40px;
+    height: 40px;
+
+
+}
+.ui-state-default .content{
+    padding: 5px 5px 5px 30px;line-height: 29px;position: relative;
+    border:1px solid #adb3cc;
+    border-radius: 4px;
+    text-shadow: 0px 1px 0 rgba(255,255,255,.7);
+
+}
+#page-content
+{
+    position: relative;
+    width: 70%;
+    height: 500px;
+    min-height: 500px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 3px rgba(0,0,0,.15);
+}
+#available-widgets
+{
+    width: 25%;
+    float: right;
+}
+
+.grey-gre{
+    /*background: url(img/patter-01.png) repeat;*/
+    background-image: linear-gradient(bottom, #C5C9D8 0%, #D6D8E3 100%);
+    background-image: -o-linear-gradient(bottom, #C5C9D8 0%, #D6D8E3 100%);
+    background-image: -moz-linear-gradient(bottom, #C5C9D8 0%, #D6D8E3 100%);
+    background-image: -webkit-linear-gradient(bottom, #C5C9D8 0%, #D6D8E3 100%);
+    background-image: -ms-linear-gradient(bottom, #C5C9D8 0%, #D6D8E3 100%);
+
+    background-image: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0, #C5C9D8),
+        color-stop(1, #D6D8E3)
+        );
+
+    color: #333c64;
+    box-shadow: inset 0px 2px 0 rgba(255,255,255,.7);
+    border-radius: 4px;
+
+
+
+
+}
+
+#sortable2{
+    height: 100%;
+    width: 100%;
+}
+#grid {
+    position: absolute;
+    width: 100%;
+    height:  100%;
+    top: 0;
+    left: 0;
+    background: #fff;
+}
+#grid .row-fluid{height: 100%;width: 100%}
+#grid .span1
+{
+    height: 100%;
+    background: #f4f4ff;
+    float: left;
+
+}
+
+
+
+
+
+
+#sortable2 .ui-selected {
+    background: red;
+    color: white;
+    font-weight: bold;
+}
+
+#sortable2 {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+#sortable2 li {
+    float: left;
+    cursor: pointer;
+    border-radius: 4px;
+    margin: 5px 0px;
+    width: 150px;
+}
+#sortable2 li .item-action{
+    width: 21px;
+    height: 22px;
+    position: absolute;
+}
+#sortable2 li .delete{
+    background:url(../img/item-delete.png) center center no-repeat;
+    top: 9px;
+    right: 3px;
+}
+#sortable2 li .edit{
+    background:url(../img/item-edit.png) center center no-repeat;
+    top: 9px;
+    left: 3px;
+}
+
+
+.ui-state-default.ui-resizable{float: left;}
