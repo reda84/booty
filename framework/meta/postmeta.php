@@ -38,7 +38,7 @@ class PostMeta extends Meta {
 
 }
 
-class PostPostMeta extends PostMeta {
+class PagePostMeta extends PostMeta {
 
     public function __construct() {
         parent::__construct();

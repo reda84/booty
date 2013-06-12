@@ -68,7 +68,9 @@ class Meta extends Base {
     public function save_meta_boxes($post_id) {
 
 
-        
+if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE )
+        return $post_id;
+
          $post_options = array();
         
 

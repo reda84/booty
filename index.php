@@ -18,6 +18,12 @@ get_header(); ?>
 
 	<div id="primary" class="site-content">
 		<div id="content" role="main">
+
+			<?php 
+$meta_values = get_post_meta(2, "booty_post_options");
+ print_r($meta_values);
+
+			?>
 		<?php if ( have_posts() ) : ?>
 
 			<?php /* Start the Loop */ ?>

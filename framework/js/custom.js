@@ -90,7 +90,7 @@ jQuery(document).ready(function ($){
                 init : init
             }
         }();
-                
+        // End of the Grid       
                 
         Grid.init("#grid",12,2.5);
                 
@@ -113,6 +113,7 @@ jQuery(document).ready(function ($){
     
 
           function refreshSortable(){
+            console.log("refresh");
                $( "#sortable2 .ui-state-default" ).resizable({
                 containment: "#sortable2",
                 grid: [ $(".span1").eq(2).outerWidth(true), 0 ],
@@ -123,10 +124,8 @@ jQuery(document).ready(function ($){
                 stop:function(){
 
                     $(".booty-item").each(function(){
-
-
-var item_width = Grid.getItemWith($(this));
-                        $(this).find(".item-wdith").eq(0).val(item_width);
+                    var item_width = Grid.getItemWith($(this));
+                     $(this).find(".item-wdith").eq(0).val(item_width);
                          console.log($(this).find(".item-wdith").eq(0).val())
                     });
                 }
@@ -149,8 +148,8 @@ var item_width = Grid.getItemWith($(this));
             content_item.append('<div class="content">'+item_name+'</div>');
             content_item.append('<div class="delete item-action"></div>')
             content_item.append('<div class="edit item-action"></div>')
-            content_item.append('<input type="hidden" name="booty_item-name[]" value="'+item_name+'"></div>')
-            content_item.append('<input type="hidden" class="item-wdith" name="booty_item-width[]" value="3"></div>')
+            content_item.append('<input type="hidden" name="booty_item-name[]" value="'+item_name+'" />')
+            content_item.append('<input type="hidden" class="item-wdith" name="booty_item-width[]" value="3" />')
             $("#sortable2").append(content_item);
         
             content_item.width(Grid.spanWidth() + Grid.spanFullWidth()*2)
@@ -163,9 +162,22 @@ var item_width = Grid.getItemWith($(this));
         
               
         });
-    
+       
+      refreshSortable();
+
+
+      $("#sortable2 li").each(function(){
+
+        $width = $(this).find(".item-wdith").val()
+        $(this).width(Grid.spanWidth() + Grid.spanFullWidth()*($width - 1)  )
+            .css({
+                "margin-left":Grid.gutterWidth() /2,
+                "margin-right":Grid.gutterWidth() /2
+            });
+      })
+
     });
-    
+   
     $(function() {
  
         $( "#draggable" ).draggable({
@@ -173,7 +185,7 @@ var item_width = Grid.getItemWith($(this));
             helper: "clone",
             revert: "invalid",
             stop: function( event, ui ) {
-                console.log(ui);
+                 
             }
         });
         $( "ul, li" ).disableSelection();

@@ -1,18 +1,13 @@
 
 
 
-<?php
-$this->text("test_multi[]","test_multi");
-$this->text("test_multi[]","test_multi");
-$this->text("test_multi[]","test_multi");
-$this->text("test_multi[]","test_multi");
-?>
+ 
 
 <div id="available-widgets">
 
     <select id="page-select-element-list">
         <option> Please select item </option>
-        <option>Accordion</option>
+        <option>offset</option>
         <option>Blog</option>
         <option>Contact-Form</option>
         <option>Column</option>
@@ -57,15 +52,23 @@ $this->text("test_multi[]","test_multi");
  <?php 
 $post_id = $_GET["post"];
 
- $items = get_post_meta(2, "booty_post_options",true);
+ $items = get_post_meta($post_id, "booty_post_options",true);
  
  $items = json_decode($items);
  
-print_r($items);
 foreach ($items as $item) : ?> 
 
 
-<li class="booty-item ui-state-default grey-gre ui-resizable"><?php echo $item->item; ?></li>
+<li class="booty-item ui-state-default grey-gre ui-resizable">
+
+    <div class="delete item-action"></div>
+    <div class="edit item-action"></div>
+    <input type="hidden" name="booty_item-name[]" value="<?php echo $item->item ?>">
+    <input type="hidden" class="item-wdith" name="booty_item-width[]" value="<?php echo $item->size ?>">
+<div class="content">
+ <?php echo $item->item; ?>
+</div>
+   </li>
     <?php endforeach; ?> 
 
     </ul>
